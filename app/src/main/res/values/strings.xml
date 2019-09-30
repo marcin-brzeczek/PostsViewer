@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">PostsViewer</string>
+    <string name="error_load_data">Data loading error: </string>
+    <string name="error_loading_file">File loading error: </string>
+    <string name="error_loading_pdf_file">Error loading pdf post: </string>
+    <string name="newest">newest</string>
+    <string name="oldest">oldest</string>
+    <string name="sort_by_name_ascending">Sort by name ascending</string>
+    <string name="sort_by_name_desceding">Sort by name desceding</string>
+    <string name="sample_body">This is sample body</string>
+    <string name="sample_name">Post Title</string>
+    <string name="file_image">post image</string>
+    <string name="pdf_extension_file">.pdf</string>
+    <string name="asceding">ascending</string>
+    <string name="desceding">desceding</string>
+    <string name="filter_name">Filter</string>
+    <string name="error_populate_database">Error populate database:</string>
+</resources>
