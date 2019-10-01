@@ -11,17 +11,13 @@ import javax.inject.Inject
 
 class PostInteractor @Inject constructor(val postApi: PostsApi) : Interactor {
 
-
     override fun getPosts(): Observable<PostState> = postApi.getPosts().toObservable()
-        .map<PostState> {
-            PostState.DataState(it)
-
-        }
+        .map<PostState> { PostState.DataState(it) }
         .onErrorReturn { PostState.ErrorState(it.message) }
 
-    fun getFileInputStream(urlString: String): Observable<PostState> {
-        return Observable.just(urlString)
-            .map<PostState> { PostState.LoadPostFromStream((getInputStreamFromUrlString(it))) }
+    fun getPostDetails(postId: String): Observable<PostState> {
+        return  postApi.getPostDetailsById(postId).toObservable()
+            .map<PostState> { PostState.LoadPostDetails(it) }
             .onErrorReturn { PostState.ErrorState(it.message) }
     }
 

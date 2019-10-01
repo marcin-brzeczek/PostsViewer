@@ -8,6 +8,7 @@
             android:name="mbitsystem.com.postsviewer.InitApp"
             android:allowBackup="true"
             android:icon="@drawable/ic_file_viewer"
+            android:networkSecurityConfig="@xml/network_security_config"
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"

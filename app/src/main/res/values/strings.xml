@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">PostsViewer</string>
     <string name="error_load_data">Data loading error: </string>
-    <string name="error_loading_file">File loading error: </string>
-    <string name="error_loading_pdf_file">Error loading pdf post: </string>
+    <string name="error_loading_file">Post loading error: </string>
+    <string name="error_loading_pdf_file">Error loading  post: </string>
     <string name="newest">newest</string>
     <string name="oldest">oldest</string>
     <string name="sort_by_name_ascending">Sort by name ascending</string>

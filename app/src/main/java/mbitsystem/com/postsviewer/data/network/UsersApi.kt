@@ -7,11 +7,8 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface PostsApi {
+interface UsersApi {
 
-    @GET("/posts")
-    fun getPosts(): Single<List<Post>>
-
-    @GET("/posts")
-    fun getPostDetailsById(@Query("id") number: String): Single<Post>
+    @GET("/users")
+    fun getUsers(): Single<List<User>>
 }

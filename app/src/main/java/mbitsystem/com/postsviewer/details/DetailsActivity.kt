@@ -3,7 +3,9 @@ package mbitsystem.com.postsviewer.details
 import android.os.Bundle
 import android.view.View
 import io.reactivex.Observable
-import kotlinx.android.synthetic.main.activity_details.*
+import kotlinx.android.synthetic.main.activity_details.titlePost
+import kotlinx.android.synthetic.main.activity_details.progress_bar
+import kotlinx.android.synthetic.main.activity_details.body
 import mbitsystem.com.postsviewer.R
 import mbitsystem.com.postsviewer.base.BaseActivity
 import mbitsystem.com.postsviewer.data.model.Post
@@ -14,7 +16,6 @@ import org.jetbrains.anko.clearTask
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.newTask
-import java.io.InputStream
 import javax.inject.Inject
 
 class DetailsActivity : BaseActivity(), DetailsView {
@@ -31,25 +32,26 @@ class DetailsActivity : BaseActivity(), DetailsView {
     override fun render(state: PostState) {
         when (state) {
             is PostState.LoadingState -> renderLoadingState()
-            is PostState.LoadPostFromStream -> renderLoadFile(state.stream)
+            is PostState.LoadPostDetails -> renderLoadPost(state.postDetails)
             is PostState.ErrorState -> renderErrorState(state.error)
         }
     }
 
-    override fun displayFileIntent(): Observable<Post> =
+    override fun displayPostIntent(): Observable<Post> =
         Observable.just(intent.extras.getParcelable(KEY_INTENT_POST) as Post)
 
     private fun renderLoadingState() {
         progress_bar.visibility = View.VISIBLE
     }
 
-    private fun renderLoadFile(stream: InputStream) {
+    private fun renderLoadPost(postDetails: Post) {
         progress_bar.visibility = View.GONE
-        try {
-            pdf_view.fromStream(stream).load()
-        } catch (e: Exception) {
-            longToast(getString(R.string.error_loading_pdf_file) + e.message)
-        }
+        setLayoutData(postDetails)
+    }
+
+    private fun setLayoutData(detailsPost: Post) {
+        titlePost.text = detailsPost.title
+        body.text = detailsPost.body
     }
 
     private fun renderErrorState(error: String?) {

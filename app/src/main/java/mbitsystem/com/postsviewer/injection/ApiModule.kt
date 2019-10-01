@@ -13,7 +13,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory
 import javax.inject.Singleton
 
 @Module
-class ApiModule(val application: InitApp, val baseUrl: String) {
+class ApiModule(val baseUrl: String) {
 
     @Provides
     @Singleton
@@ -25,5 +25,5 @@ class ApiModule(val application: InitApp, val baseUrl: String) {
 
 
     @Provides
-    fun provideContactsApi(retrofit: Retrofit) = retrofit.create(PostsApi::class.java)
+    fun providePostsApi(retrofit: Retrofit) = retrofit.create(PostsApi::class.java)
 }

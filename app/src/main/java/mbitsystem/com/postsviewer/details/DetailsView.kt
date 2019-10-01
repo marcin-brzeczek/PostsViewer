@@ -6,5 +6,5 @@ import mbitsystem.com.postsviewer.state.PostState
 
 interface DetailsView {
   fun render(state: PostState)
-  fun displayFileIntent(): Observable<Post>
+  fun displayPostIntent(): Observable<Post>
 }

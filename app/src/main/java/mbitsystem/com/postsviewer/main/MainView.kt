@@ -7,7 +7,4 @@ import mbitsystem.com.postsviewer.state.PostState
 interface MainView {
     fun render(state: PostState)
     fun getFilesIntent(): Observable<Unit>
-    fun getFilesDescendingIntent(): Observable<Unit>
-    fun getFilesAscendingIntent(): Observable<Unit>
-    fun deleteMovieIntent(): Observable<Post>
 }

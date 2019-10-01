@@ -15,7 +15,7 @@ class InitApp : DaggerApplication(), HasActivityInjector {
         DaggerAppComponent.builder().let {
             it.seedInstance(this)
             it.setAppModule(AppModule(this))
-            it.setApiModule(ApiModule(this, apiUrl))
+            it.setApiModule(ApiModule( apiUrl))
             it.build()
         }
     }

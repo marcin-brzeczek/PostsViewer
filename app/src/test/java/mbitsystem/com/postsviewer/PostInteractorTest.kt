@@ -34,7 +34,7 @@ class PostInteractorTest : BaseTest() {
     }
 
     @Test
-    fun `get files ascending`() {
+    fun `get posts`() {
         val files = dummyAllPosts
         Mockito.`when`(api.getPosts().toObservable()).thenReturn(Observable.just(files))
 
