@@ -21,7 +21,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/sample_body"
             app:layout_constraintLeft_toLeftOf="@id/titlePost"
             app:layout_constraintTop_toBottomOf="@id/titlePost" />
 
@@ -32,6 +31,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/author"
             android:textStyle="italic"
+            android:visibility="gone"
             app:layout_constraintLeft_toLeftOf="@id/body"
             app:layout_constraintTop_toBottomOf="@id/body" />
 
@@ -40,7 +40,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@string/sample_body"
+            android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="@id/authorLabel"
             app:layout_constraintTop_toBottomOf="@id/authorLabel" />
 
@@ -51,6 +51,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/comments"
             android:textStyle="italic"
+            android:visibility="gone"
             app:layout_constraintLeft_toLeftOf="@id/author"
             app:layout_constraintTop_toBottomOf="@id/author" />
 

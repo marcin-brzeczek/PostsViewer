@@ -48,6 +48,6 @@ class PostInteractor @Inject constructor(
         users: List<User>,
         comments: List<Comment>
     ): PostDetails {
-        return PostDetails(post.title, post.body, users.first().name, comments)
+        return PostDetails(post.title, post.body, users.first().name, users.first().email, comments)
     }
 }

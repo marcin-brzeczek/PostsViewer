@@ -13,6 +13,8 @@
     <string name="pdf_extension_file">.pdf</string>
     <string name="asceding">ascending</string>
     <string name="desceding">desceding</string>
+    <string name="send_to">Wyślij do...</string>
+    <string name="text_format">text/plain</string>
     <string name="filter_name">Filter</string>
     <string name="error_populate_database">Error populate database:</string>
     <string name="comments">Comments</string>

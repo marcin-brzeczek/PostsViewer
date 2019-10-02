@@ -54,6 +54,7 @@ class MainActivity : BaseActivity(), MainView {
         longToast(getString(R.string.error_load_data) + it)
     }
 
+
     override fun onStop() {
         super.onStop()
         presenter.unbind()

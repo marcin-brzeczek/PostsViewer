@@ -14,6 +14,8 @@ class DetailsPresenter @Inject constructor(val postInteractor: PostInteractor) :
     private val compositeDisposable = CompositeDisposable()
     private lateinit var view: DetailsView
 
+    internal var userEmail = ""
+
     override fun bind(view: DetailsView) {
         this.view = view
         compositeDisposable.add(observePostDisplayIntent())
@@ -27,7 +29,7 @@ class DetailsPresenter @Inject constructor(val postInteractor: PostInteractor) :
 
     override fun observePostDisplayIntent(): Disposable = view.displayPostIntent()
         .doOnNext { Timber.d("Intent: Display Post ${it.title}") }
-        .flatMap<PostState> { postInteractor.getPostDetails(it)  }
+        .flatMap<PostState> { postInteractor.getPostDetails(it) }
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .doOnSubscribe { view.render(PostState.LoadingState) }
