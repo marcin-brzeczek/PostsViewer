@@ -3,6 +3,7 @@ package mbitsystem.com.postsviewer.details
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import mbitsystem.com.postsviewer.data.PostInteractor
 import mbitsystem.com.postsviewer.state.PostState
 import timber.log.Timber
@@ -25,8 +26,10 @@ class DetailsPresenter @Inject constructor(val postInteractor: PostInteractor) :
     }
 
     override fun observePostDisplayIntent(): Disposable = view.displayPostIntent()
-        .doOnNext { Timber.d("Intent: Display Post") }
+        .doOnNext { Timber.d("Intent: Display Post ${it.title}") }
+        .flatMap<PostState> { postInteractor.getPostDetails(it)  }
+        .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .doOnSubscribe { view.render(PostState.LoadingState) }
-        .subscribe { view.render(PostState.LoadPostDetails(it)) }
+        .subscribe { view.render(it) }
 }

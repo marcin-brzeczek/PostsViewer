@@ -14,4 +14,6 @@ interface PostsApi {
 
     @GET("/posts")
     fun getPostDetailsById(@Query("id") number: String): Single<Post>
+
+//    tytuł, treść (pełną), imię i nazwisko autora, listę komentarzy.
 }

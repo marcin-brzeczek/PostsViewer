@@ -8,7 +8,7 @@ data class PostDetails(
     val title: String,
     val body: String,
     val userName: String,
-    val comments: List<String>
+    val comments: List<Comment>
 ) : PaperParcelable {
     override fun toString() = title
 

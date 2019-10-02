@@ -30,7 +30,7 @@ class MainActivity : BaseActivity(), MainView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        recycler_view.adapter = FilesAdapter()
+        recycler_view.adapter = MainAdapter()
         recycler_view.layoutManager = LinearLayoutManager(this)
         presenter.bind(this)
     }
@@ -46,7 +46,7 @@ class MainActivity : BaseActivity(), MainView {
         progress_bar.visibility = View.GONE
         recycler_view.apply {
             isEnabled = true
-            (adapter as FilesAdapter).submitList(dataState.data)
+            (adapter as MainAdapter).submitList(dataState.data)
         }
     }
 

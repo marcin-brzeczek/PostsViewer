@@ -2,13 +2,13 @@ package mbitsystem.com.postsviewer.details
 
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import io.reactivex.Observable
-import kotlinx.android.synthetic.main.activity_details.titlePost
-import kotlinx.android.synthetic.main.activity_details.progress_bar
-import kotlinx.android.synthetic.main.activity_details.body
+import kotlinx.android.synthetic.main.activity_details.*
 import mbitsystem.com.postsviewer.R
 import mbitsystem.com.postsviewer.base.BaseActivity
 import mbitsystem.com.postsviewer.data.model.Post
+import mbitsystem.com.postsviewer.data.model.PostDetails
 import mbitsystem.com.postsviewer.main.MainActivity
 import mbitsystem.com.postsviewer.state.PostState
 import mbitsystem.com.postsviewer.utils.KEY_INTENT_POST
@@ -16,6 +16,7 @@ import org.jetbrains.anko.clearTask
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.newTask
+import timber.log.Timber
 import javax.inject.Inject
 
 class DetailsActivity : BaseActivity(), DetailsView {
@@ -26,6 +27,9 @@ class DetailsActivity : BaseActivity(), DetailsView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
+
+        recycler_view.adapter = DetailsAdapter()
+        recycler_view.layoutManager = LinearLayoutManager(this)
         presenter.bind(this)
     }
 
@@ -44,19 +48,26 @@ class DetailsActivity : BaseActivity(), DetailsView {
         progress_bar.visibility = View.VISIBLE
     }
 
-    private fun renderLoadPost(postDetails: Post) {
+    private fun renderLoadPost(postDetails: PostDetails) {
         progress_bar.visibility = View.GONE
         setLayoutData(postDetails)
     }
 
-    private fun setLayoutData(detailsPost: Post) {
+    private fun setLayoutData(detailsPost: PostDetails) {
         titlePost.text = detailsPost.title
         body.text = detailsPost.body
+        author.text = detailsPost.userName
+        recycler_view.apply {
+            isEnabled = true
+            (adapter as DetailsAdapter).submitList(detailsPost.comments)
+        }
     }
 
     private fun renderErrorState(error: String?) {
         progress_bar.visibility = View.GONE
-        error?.let { longToast(getString(R.string.error_loading_file) + it) }
+        error?.let { longToast(getString(R.string.error_loading_post) + it)
+        Timber.d("Error loading post details: \n $it")
+        }
     }
 
     override fun onStop() {

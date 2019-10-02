@@ -10,5 +10,5 @@ import retrofit2.http.Query
 interface UsersApi {
 
     @GET("/users")
-    fun getUsers(): Single<List<User>>
+    fun getUsersById(@Query("id") id: String): Single<List<User>>
 }

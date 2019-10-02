@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item.view.*
+import kotlinx.android.synthetic.main.post_item.view.*
 import mbitsystem.com.postsviewer.R
 import mbitsystem.com.postsviewer.data.model.Post
 import mbitsystem.com.postsviewer.details.DetailsActivity
@@ -14,10 +14,10 @@ import mbitsystem.com.postsviewer.utils.KEY_INTENT_POST
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.sdk27.coroutines.onClick
 
-class FilesAdapter : ListAdapter<Post, FilesAdapter.FileHolder>(DiffCallback()) {
+class MainAdapter : ListAdapter<Post, MainAdapter.FileHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FileHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.post_item, parent, false)
         return FileHolder(view)
     }
 
@@ -34,8 +34,6 @@ class FilesAdapter : ListAdapter<Post, FilesAdapter.FileHolder>(DiffCallback()) 
             }
         }
     }
-
-    internal fun getFileAtPosition(position: Int) = getItem(position)
 }
 
 class DiffCallback : DiffUtil.ItemCallback<Post>() {
