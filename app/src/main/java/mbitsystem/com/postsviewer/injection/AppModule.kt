@@ -8,6 +8,8 @@ import mbitsystem.com.postsviewer.details.DetailsPresenter
 import mbitsystem.com.postsviewer.details.IDetailsPresenter
 import mbitsystem.com.postsviewer.main.IMainPresenter
 import mbitsystem.com.postsviewer.main.MainPresenter
+import mbitsystem.com.postsviewer.utils.AppSchedulerProvider
+import mbitsystem.com.postsviewer.utils.SchedulerProvider
 import javax.inject.Singleton
 
 @Module
@@ -19,11 +21,18 @@ class AppModule(val application: InitApp) {
         return application
     }
 
-      @Singleton
+    @Singleton
     @Provides
-    fun providesMainPresenter(postInteractor: PostInteractor): IMainPresenter = MainPresenter(postInteractor)
+    fun providesMainPresenter(postInteractor: PostInteractor, schedulerProvider: AppSchedulerProvider): IMainPresenter =
+        MainPresenter(postInteractor, schedulerProvider)
 
     @Singleton
     @Provides
-    fun providesDetailsPresenter(postInteractor: PostInteractor): IDetailsPresenter = DetailsPresenter(postInteractor)
+    fun providesDetailsPresenter(postInteractor: PostInteractor,schedulerProvider: AppSchedulerProvider): IDetailsPresenter =
+        DetailsPresenter(postInteractor, schedulerProvider)
+
+    @Provides
+    @Singleton
+    fun provideSchedulerProvider(): SchedulerProvider = AppSchedulerProvider()
+
 }

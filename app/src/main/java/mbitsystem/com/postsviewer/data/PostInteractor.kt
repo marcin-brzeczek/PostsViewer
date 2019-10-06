@@ -19,7 +19,7 @@ class PostInteractor @Inject constructor(
     val commentApi: CommentsApi
 ) : Interactor {
 
-    override fun getPosts(): Observable<PostState> = postApi.getPosts().toObservable()
+    override fun getPosts(): Observable<PostState> = postApi.getPosts()
         .map<PostState> { PostState.DataState(it) }
         .onErrorReturn { PostState.ErrorState(it.message) }
 
